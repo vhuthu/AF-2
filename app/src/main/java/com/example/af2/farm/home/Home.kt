@@ -6,5 +6,5 @@ import androidx.compose.runtime.Composable
 @Composable
 fun Home() {
 
-    Text(text = "this the home screen")
+    DashBoard()
 }
