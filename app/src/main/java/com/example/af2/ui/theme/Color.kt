@@ -13,3 +13,5 @@ val Pink40 = Color(0xFF7D5260)
 val ChartGreen = Color(0xFF386C0B)
 val ChartLightGreen = Color(0xFF9DAE62)
 val ChartRed = Color(0xFFEB5757)
+
+val GreyLight = Color(0xFFf5f5f5)

@@ -42,7 +42,7 @@ import java.time.Duration
 fun PieChart(
     data : Map<String , Int>,
     radiusOuter : Dp = 60.dp,
-    chartBarWidth: Dp = 25.dp,
+    chartBarWidth: Dp = 28.dp,
     animDuration: Int = 3000
 ) {
         val totalSum = data.values.sum()
@@ -83,7 +83,7 @@ fun PieChart(
         animationPlayed = true
     }
 
-    Row(modifier = Modifier.fillMaxWidth().padding(start = 30.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center
+    Row(modifier = Modifier.fillMaxWidth().padding(start = 70.dp, top = 10.dp), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center
 
     ) {
 
@@ -153,9 +153,9 @@ fun DetailsPieChartItems(
             )
             Column(modifier = Modifier.fillMaxWidth()) {
                 Text(
-                    modifier = Modifier.padding(start = 15.dp),
+                    modifier = Modifier.padding(start = 16.dp),
                     text = data.first,
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.ExtraBold,
                     fontSize = 16.sp,
                     color = Color.Black
                 )
@@ -163,9 +163,9 @@ fun DetailsPieChartItems(
                 Text(
                     modifier = Modifier.padding(start = 15.dp),
                     text = data.second.toString(),
-                    fontWeight = FontWeight.Medium,
+                    fontWeight = FontWeight.ExtraBold,
                     fontSize = 20.sp,
-                    color = Color.Gray
+                    color = Color.Black
                 )
             }
         }

@@ -34,8 +34,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.af2.R
+import com.example.af2.ui.theme.GreyLight
 
-@Preview(showBackground = true)
+@Preview(showSystemUi = true)
 @Composable
 fun DashBoardPreview() {
     DashBoardPreview()
@@ -55,14 +56,14 @@ fun DashBoard() {
 
             Box(modifier = Modifier
                 .fillMaxWidth()
-                .height(220.dp)
-                .background(color = Color.Gray.copy(alpha = 0.7f), shape = RoundedCornerShape(5.dp))) {
+                .height(250.dp).padding(start = 7.dp, end = 7.dp)
+                .background(color = GreyLight, shape = RoundedCornerShape(20.dp))) {
 
                 PieChart(
                        data = mapOf(
-                            Pair("Sample-1", 100),
-                            Pair("Sample-2", 50),
-                            Pair("Sample-3", 10),
+                            Pair("Profit",60),
+                            Pair("Money In", 100),
+                            Pair("Money Out", 20),
                         )
                     )
             }
@@ -74,12 +75,12 @@ fun DashBoard() {
 
                 Card(modifier = Modifier
                     .size(190.dp, 130.dp)
-                    , colors = CardDefaults.cardColors(containerColor = Color.Gray)) {
+                    , colors = CardDefaults.cardColors(containerColor = GreyLight)) {
                     Column() {
                         Image(painter = painterResource(id = R.drawable.icons8), contentDescription = null ,  modifier = Modifier
                             .size(110.dp, 80.dp)
                             .padding(start = 56.dp, top = 10.dp) )
-                        Text(text = "vhuthu", modifier = Modifier.padding(start = 55.dp, top = 5.dp))
+                        Text(text = "Book Keeping", modifier = Modifier.padding(start = 44.dp, top = 5.dp))
                     }
                 }
                 //-----
@@ -87,13 +88,13 @@ fun DashBoard() {
 
                 Card(modifier = Modifier
                     .size(190.dp, 130.dp)
-                    ,colors = CardDefaults.cardColors(containerColor = Color.Gray)
+                    ,colors = CardDefaults.cardColors(containerColor = GreyLight)
                     ) {
                     Column() {
                         Image(painter = painterResource(id = R.drawable.icons8), contentDescription = null ,  modifier = Modifier
                             .size(110.dp, 80.dp)
                             .padding(start = 56.dp, top = 10.dp) )
-                        Text(text = "vhuthu", modifier = Modifier.padding(start = 55.dp, top = 5.dp))
+                        Text(text = "Profile Details", modifier = Modifier.padding(start = 47.dp, top = 5.dp))
                     }
 
                 }
@@ -101,8 +102,8 @@ fun DashBoard() {
 
             Spacer(modifier = Modifier.height(4.dp))
             Column(modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Gray, shape = RoundedCornerShape(topStart = 5.dp, topEnd = 5.dp)),horizontalAlignment = Alignment.CenterHorizontally ) {
+                .fillMaxWidth().padding(6.dp)
+                .background(GreyLight, shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)),horizontalAlignment = Alignment.CenterHorizontally ) {
                 Text(text = "QUICK TIPS", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
                 Spacer(modifier = Modifier.height(4.dp))
 
