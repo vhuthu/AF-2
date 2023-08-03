@@ -1,15 +1,18 @@
 package com.example.af2.farm.login
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -22,11 +25,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.af2.R
 import com.example.af2.ui.theme.AF2Theme
+import com.example.af2.ui.theme.ChartGreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -41,16 +48,22 @@ fun LoginScreen(
     val isError = loginUiState?.loginError != null
     val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(top = 35.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
+        Image(painter = painterResource(id = R.drawable.login1), modifier = Modifier.size(200.dp,200.dp), contentDescription = null)
         Text(
             text = "Login", style = MaterialTheme.typography.titleLarge
         )
+        Text(
+            text = "Welcome Back", fontWeight = FontWeight.ExtraBold,style = MaterialTheme.typography.titleLarge
+        )
 
         if (isError) {
-            Text(text = loginUiState?.loginError ?: "Unknown Error", color = Color.Red)
+            Text(text = loginUiState?.loginError ?: "Sorry wrong password or email", color = Color.Red)
         }
-
+Spacer(modifier = Modifier.height(70.dp))
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth()
@@ -74,17 +87,18 @@ fun LoginScreen(
         )
 
 //button to submit
-        Button(onClick = { loginViewModel?.loginUser(context) }) {
+        Button(onClick = { loginViewModel?.loginUser(context) } , modifier = Modifier
+            .width(200.dp)
+            .height(49.dp), colors = ButtonDefaults.buttonColors(containerColor = ChartGreen)) {
             Text(text = "Sign In")
         }
         Spacer(modifier = Modifier.size(16.dp))
 
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
 
-            Text(text = "Don't Have an Account Yet ?")
-            Spacer(modifier = Modifier.width(5.dp))
+            Text(text = "Don’t have an account?")
             TextButton(onClick = { onNavToSignUpPage.invoke() }) {
-                Text(text = "SignUp")
+                Text(text = "Register", color = ChartGreen)
             }
         }
 
@@ -117,10 +131,12 @@ fun SignUpScreen(
     val isError = loginUiState?.signUpError != null
     val context = LocalContext.current
 
-    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(top = 30.dp), horizontalAlignment = Alignment.CenterHorizontally) {
 
         Text(
-            text = "Sign Up", style = MaterialTheme.typography.titleLarge
+            text = "", style = MaterialTheme.typography.titleLarge
         )
 
         if (isError) {
@@ -163,17 +179,17 @@ fun SignUpScreen(
 
 
 //button to submit
-        Button(onClick = { loginViewModel?.createUser(context) }) {
+        Button(onClick = { loginViewModel?.createUser(context) }, colors = ButtonDefaults.buttonColors(containerColor = ChartGreen)) {
             Text(text = "Sign In")
         }
         Spacer(modifier = Modifier.size(16.dp))
 
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
 
-            Text(text = "Already Have an Account Yet ?")
+            Text(text = "Already have account?")
             Spacer(modifier = Modifier.width(5.dp))
             TextButton(onClick = { onNavToLogInPage.invoke() }) {
-                Text(text = "Sign In")
+                Text(text = "LOGIN" , color = ChartGreen)
             }
         }
 

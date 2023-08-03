@@ -1,7 +1,11 @@
 package com.example.af2.farm.home
 
+import android.content.Intent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -27,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -34,6 +40,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.af2.R
+import com.example.af2.Records
+import com.example.af2.ui.theme.Greenlines
 import com.example.af2.ui.theme.GreyLight
 
 @Preview(showSystemUi = true)
@@ -45,74 +53,125 @@ fun DashBoardPreview() {
 @Composable
 fun DashBoard() {
 
-    Surface(modifier = Modifier.fillMaxSize(), color = Color.White) {
+    val context = LocalContext.current
+    Surface(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 14.dp, end = 14.dp), color = Color.White
+    ) {
 
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            ) {
-            Text(text = "WELCOME, VHUTHU", fontSize = 18.sp , fontWeight = FontWeight.ExtraBold, modifier = Modifier.padding(start = 50.dp, top = 50.dp))
-
-            Spacer(modifier = Modifier.height(30.dp))
-
-            Box(modifier = Modifier
+        Column(
+            modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp).padding(start = 7.dp, end = 7.dp)
-                .background(color = GreyLight, shape = RoundedCornerShape(20.dp))) {
+        ) {
+            Text(
+                text = "Welcome, VHUTHU",
+                fontSize = 23.sp,
+                fontWeight = FontWeight.ExtraBold,
+                modifier = Modifier.padding(start = 10.dp, top = 30.dp)
+            )
+
+            Text(
+                text = "Financial overview ",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.ExtraBold,
+                modifier = Modifier.padding(start = 10.dp, top = 20.dp)
+            )
+            Spacer(modifier = Modifier.height(15.dp))
+
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(1.dp, Color.Black, RoundedCornerShape(20.dp))
+                    .height(225.dp)
+                    .background(color = GreyLight, shape = RoundedCornerShape(20.dp))
+            ) {
 
                 PieChart(
-                       data = mapOf(
-                            Pair("Profit",60),
-                            Pair("Money In", 100),
-                            Pair("Money Out", 20),
-                        )
+                    data = mapOf(
+                        Pair("Profit", 30),
+                        Pair("Money In", 150),
+                        Pair("Money Out", 20),
                     )
+                )
             }
             Spacer(modifier = Modifier.height(13.dp))
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .height(170.dp), horizontalArrangement = Arrangement.Center
-                ) {
+            Text(
+                text = "Navigate pages ",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.ExtraBold,
+                modifier = Modifier.padding(start = 10.dp, top = 20.dp)
+            )
+            Spacer(modifier = Modifier.height(9.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(170.dp), horizontalArrangement = Arrangement.Center
+            ) {
 
-                Card(modifier = Modifier
-                    .size(190.dp, 130.dp)
-                    , colors = CardDefaults.cardColors(containerColor = GreyLight)) {
+                Card(
+                    modifier = Modifier
+                        .size(190.dp, 106.dp).clickable { context.startActivity(Intent(context,Records::class.java))  },
+                    colors = CardDefaults.cardColors(containerColor = GreyLight)
+                ) {
                     Column() {
-                        Image(painter = painterResource(id = R.drawable.icons8), contentDescription = null ,  modifier = Modifier
-                            .size(110.dp, 80.dp)
-                            .padding(start = 56.dp, top = 10.dp) )
-                        Text(text = "Book Keeping", modifier = Modifier.padding(start = 44.dp, top = 5.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.icons8),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(110.dp, 80.dp)
+                                .padding(start = 56.dp, top = 2.dp)
+                        )
+                        Text(
+                            text = "Book Keeping",
+                            modifier = Modifier.padding(start = 44.dp, top = 2.dp)
+                        )
                     }
                 }
                 //-----
                 Spacer(modifier = Modifier.width(20.dp))
 
-                Card(modifier = Modifier
-                    .size(190.dp, 130.dp)
-                    ,colors = CardDefaults.cardColors(containerColor = GreyLight)
-                    ) {
+                Card(
+                    modifier = Modifier
+                        .size(190.dp, 106.dp),
+                    colors = CardDefaults.cardColors(containerColor = GreyLight)
+                ) {
                     Column() {
-                        Image(painter = painterResource(id = R.drawable.icons8), contentDescription = null ,  modifier = Modifier
-                            .size(110.dp, 80.dp)
-                            .padding(start = 56.dp, top = 10.dp) )
-                        Text(text = "Profile Details", modifier = Modifier.padding(start = 47.dp, top = 5.dp))
+                        Image(
+                            painter = painterResource(id = R.drawable.icons8),
+                            contentDescription = null,
+                            modifier = Modifier
+                                .size(110.dp, 80.dp)
+                                .padding(start = 56.dp, top = 2.dp)
+                        )
+                        Text(
+                            text = "Profile Details",
+                            modifier = Modifier.padding(start = 44.dp, top = 2.dp)
+                        )
                     }
 
                 }
             }
 
-            Spacer(modifier = Modifier.height(4.dp))
-            Column(modifier = Modifier
-                .fillMaxWidth().padding(6.dp)
-                .background(GreyLight, shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)),horizontalAlignment = Alignment.CenterHorizontally ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(Color.Transparent)
+            ) {
                 Text(text = "QUICK TIPS", fontSize = 18.sp, fontWeight = FontWeight.ExtraBold)
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(3.dp))
+                Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
 
-
-                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Card(
+                        border = BorderStroke(1.dp, Greenlines),
+                        colors = CardDefaults.cardColors(containerColor = Color.White)
+                    ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(54.dp), verticalAlignment = Alignment.CenterVertically
+                                .padding(15.dp)
+                                .height(45.dp), verticalAlignment = Alignment.CenterVertically
 
                         ) {
                             Image(
@@ -133,17 +192,22 @@ fun DashBoard() {
 
                     }
                     //-----
-
-                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Card(
+                        border = BorderStroke(1.dp, Greenlines),
+                        colors = CardDefaults.cardColors(containerColor = Color.White)
+                    ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(54.dp), verticalAlignment = Alignment.CenterVertically
+                                .padding(15.dp)
+                                .height(45.dp), verticalAlignment = Alignment.CenterVertically
 
                         ) {
                             Image(
                                 modifier = Modifier
                                     .clip(shape = CircleShape)
+                                    .height(52.dp)
                                     .size(size = 29.dp),
                                 painter = painterResource(id = R.drawable.iconidea),
                                 contentDescription = "",
@@ -159,11 +223,16 @@ fun DashBoard() {
 
                     }
                     //-----
-                    Card(colors = CardDefaults.cardColors(containerColor = Color.White)) {
+                    Spacer(modifier = Modifier.height(18.dp))
+                    Card(
+                        border = BorderStroke(1.dp, Greenlines),
+                        colors = CardDefaults.cardColors(containerColor = Color.White)
+                    ) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .height(54.dp), verticalAlignment = Alignment.CenterVertically
+                                .padding(12.dp)
+                                .height(45.dp), verticalAlignment = Alignment.CenterVertically
 
                         ) {
                             Image(
@@ -185,9 +254,9 @@ fun DashBoard() {
                     }
 
 
+                }
 
             }
-
         }
     }
 }

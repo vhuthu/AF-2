@@ -15,3 +15,5 @@ val ChartLightGreen = Color(0xFF9DAE62)
 val ChartRed = Color(0xFFEB5757)
 
 val GreyLight = Color(0xFFf5f5f5)
+
+val Greenlines = Color(0xFFB1BE81)
