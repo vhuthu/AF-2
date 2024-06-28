@@ -18,7 +18,6 @@ class SharedViewModel(
 ) : ViewModel(){
 
     /*
-    * having  a shared view model helps to reduce boilerplate code
     * the functions below use firebase resources to save and update and delete in data in the database
     * */
 
@@ -39,8 +38,6 @@ class SharedViewModel(
         }
 
     }
-
-
 
     fun retrieveData(itemID:String,
                      context: Context,
@@ -95,12 +92,4 @@ class SharedViewModel(
         }
 
     }
-
-
-
-
-
-
-
-
 }
